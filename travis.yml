@@ -1,0 +1,26 @@
+  - go run build/ci.go lint
+
+    # This builder does the Ubuntu PPA upload
+    - if: repo = ethereum/go-ethereum AND type = push
+    - if: type = push
+      os: linux
+      dist: xenial
+      go: 1.12.x
+@@ -86,7 +86,7 @@ matrix:
+        - go run build/ci.go debsrc -upload ethereum/ethereum -sftp-user geth-ci -signer "Go Ethereum Linux Builder <geth-ci@ethereum.org>"
+
+    # This builder does the Linux Azure uploads
+    - if: repo = ethereum/go-ethereum AND type = push
+    - if: type = push
+      os: linux
+      dist: xenial
+      sudo: required
+@@ -120,7 +120,7 @@ matrix:
+        - go run build/ci.go archive -arch arm64 -type tar -signer LINUX_SIGNING_KEY -upload gethstore/builds
+
+    # This builder does the Linux Azure MIPS xgo uploads
+    - if: repo = ethereum/go-ethereum AND type = push
+    - if: type = push
+      os: linux
+      dist: xenial
+      services:
